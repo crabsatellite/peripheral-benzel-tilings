@@ -3,6 +3,7 @@ message: "If you use this work, please cite the accompanying article."
 title: "Peripheral Benzel Tilings with Right Stones and Three Bone Orientations"
 version: 1.0.0
 date-released: 2026-08-24
+doi: "10.5281/zenodo.22079396"
 authors:
   - family-names: Li
     given-names: Alex Chengyu

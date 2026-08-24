@@ -64,6 +64,7 @@ repository root so that it restores `lean4/.lake/build/lib/BenzelProblem6Kernel`
 ## Archival identifiers
 
 - Paper concept DOI: [10.5281/zenodo.22057378](https://doi.org/10.5281/zenodo.22057378)
+- Software/formalization concept DOI: [10.5281/zenodo.22079396](https://doi.org/10.5281/zenodo.22079396)
 - Canonical repository: [crabsatellite/peripheral-benzel-tilings](https://github.com/crabsatellite/peripheral-benzel-tilings)
 
 The paper and software records are linked on Zenodo. Cite a version DOI when
