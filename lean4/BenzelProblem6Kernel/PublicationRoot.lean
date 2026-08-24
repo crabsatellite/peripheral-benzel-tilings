@@ -1,0 +1,203 @@
+import BenzelProblem6Kernel.GeneratingAlgebra
+import BenzelProblem6Kernel.LiteralTileEnergy
+import BenzelProblem6Kernel.NoCycles
+import BenzelProblem6Kernel.OwnerCoordinates
+import BenzelProblem6Kernel.RegionEnergy
+import BenzelProblem6Kernel.SinkCount
+import BenzelProblem6Kernel.FinalBinomial
+import BenzelProblem6Kernel.LiteralBenzel
+import BenzelProblem6Kernel.OwnerPartition
+import BenzelProblem6Kernel.OwnerRegionEnergy
+import BenzelProblem6Kernel.LiteralBoneEdges
+import BenzelProblem6Kernel.BenzelArea
+import BenzelProblem6Kernel.IndependentArmAlgebra
+import BenzelProblem6Kernel.BallotRecurrence
+import BenzelProblem6Kernel.ArmCarriers
+import BenzelProblem6Kernel.BallotWords
+import BenzelProblem6Kernel.ArmEndpoints
+import BenzelProblem6Kernel.ArmPrefixBounds
+import BenzelProblem6Kernel.BallotWordInjectivity2
+import BenzelProblem6Kernel.BallotWordSurjectivity
+import BenzelProblem6Kernel.DerivativeCoefficient
+import BenzelProblem6Kernel.PathModelCarrier
+import BenzelProblem6Kernel.ClosedFormRecurrence
+import BenzelProblem6Kernel.ClosedFormUniqueness
+import BenzelProblem6Kernel.LiteralTilingCarrier
+import BenzelProblem6Kernel.TilingIncidence
+import BenzelProblem6Kernel.LiteralTileCounts
+import BenzelProblem6Kernel.LiteralCellEnergy
+import BenzelProblem6Kernel.PhaseLocalEnergy
+import BenzelProblem6Kernel.TilingEnergyDoubleCount
+import BenzelProblem6Kernel.LiteralEnergyRigidity
+import BenzelProblem6Kernel.PathModelRationalKernel
+import BenzelProblem6Kernel.WZPolynomialCertificate
+import BenzelProblem6Kernel.PathModelClosedForm
+import BenzelProblem6Kernel.ManuscriptClosedForm
+import BenzelProblem6Kernel.GoodBoneOwnerWitness
+import BenzelProblem6Kernel.LiteralDirectedEdge
+import BenzelProblem6Kernel.GoodBoneCellRoles
+import BenzelProblem6Kernel.LiteralPathModelEquiv
+import BenzelProblem6Kernel.LiteralTilingShadowFactorization
+import BenzelProblem6Kernel.GoodWZCrossCheck
+import BenzelProblem6Kernel.GoodResidueSpecialization
+import BenzelProblem6Kernel.KernelOnlyClosure
+import BenzelProblem6Kernel.ManuscriptEndpoints
+
+/-!
+# Kernel publication root
+
+All load-bearing manuscript producers, the literal Conway--Lagarias
+factorization route, the tiling/path equivalence, and the displayed main
+theorem are exported here without project premises.
+-/
+
+namespace BenzelProblem6Kernel
+
+def publication_owner_energy_sum := @ownerPotential_sum
+def publication_allowed_edge_energy := @allowedTwoOwnerBone_energy_one
+def publication_stone_energy_table := @stone_energy_by_residue
+def publication_boneA_energy_table := @boneA_energy_by_residue
+def publication_boneB_energy_table := @boneB_energy_by_residue
+def publication_boneC_energy_table := @boneC_energy_by_residue
+def publication_bad_tile_exclusion := @bad_tile_counts_zero
+def publication_owner_phase := @owner_phase_identity
+def publication_owner_u := @recover_u_numerator
+def publication_owner_v := @recover_v_numerator
+def publication_owner_w := @recover_w_numerator
+def publication_no_directed_cycles := @allowed_walk_closed_iff_empty
+def publication_corner_energy := @three_corner_energy
+def publication_bone_count := @bone_count_twice_identity
+def publication_unique_sink_type := @one_sink_type_of_edge_count
+def publication_sink_positive := @sinkPoint_positive
+def publication_active_owner_count := @active_owner_count_twice_identity
+def publication_chirality_base := fixedSinkCount_zero
+def publication_chirality_factorization := @chirality_rational_factorization
+def publication_jacobian := @jacobian_difference_of_cubes
+def publication_generating_simplification :=
+  @total_generating_rational_simplification
+def publication_final_binomial := @ballot_form_eq_closed_form
+def publication_owner_zero_boundary := @owner_zero_mem_iff
+def publication_owner_one_boundary := @owner_one_mem_iff
+def publication_owner_two_boundary := @owner_two_mem_iff
+def publication_benzel_cell_has_owner := @benzel_cell_has_owner
+def publication_owner_representation_unique := @owner_representation_unique
+def publication_total_owner_energy := @total_owner_present_energy
+def publication_bone_edge_profiles := @all_two_owner_bone_profiles
+def publication_bone_edge_directions := @all_two_owner_bone_directions_allowed
+def publication_simplex_cardinality := @card_simplexPoint
+def publication_benzel_area := @card_benzelCell
+def publication_positive_arm_cancellation := @positiveArmTripleCount_eq
+def publication_recursive_ballot_cardinality := @card_recursiveBallot_of_le
+def publication_positive_arm_triple_cardinality := @card_positiveArmTriple
+def publication_negative_arm_triple_cardinality := @card_negativeArmTriple
+def publication_ballot_word_length := @recursiveBallotWord_length
+def publication_ballot_word_majority := @recursiveBallotWord_majority
+def publication_ballot_word_minority := @recursiveBallotWord_minority
+def publication_ballot_word_valid := @recursiveBallotWord_isBallot
+def publication_positive_labelZero_endpoint := @positive_labelZero_endpoint
+def publication_negative_labelZero_endpoint := @negative_labelZero_endpoint
+def publication_positive_labelOne_endpoint := @positive_labelOne_endpoint
+def publication_negative_labelOne_endpoint := @negative_labelOne_endpoint
+def publication_positive_labelTwo_endpoint := @positive_labelTwo_endpoint
+def publication_negative_labelTwo_endpoint := @negative_labelTwo_endpoint
+def publication_positive_zero_one_disjoint := @positive_arms_zero_one_meet_only_at_sink
+def publication_positive_one_two_disjoint := @positive_arms_one_two_meet_only_at_sink
+def publication_positive_two_zero_disjoint := @positive_arms_two_zero_meet_only_at_sink
+def publication_negative_zero_one_disjoint := @negative_arms_zero_one_meet_only_at_sink
+def publication_negative_one_two_disjoint := @negative_arms_one_two_meet_only_at_sink
+def publication_negative_two_zero_disjoint := @negative_arms_two_zero_meet_only_at_sink
+def publication_ballot_word_injective := @recursiveBallotWord_injective
+def publication_ballot_word_surjective := @exists_recursiveBallot_of_sequence
+noncomputable def publication_ballot_word_equivalence := @recursiveBallotEquivConcrete
+def publication_X_derivative_coefficient := @coeff_X_mul_derivative
+def publication_derivative_form_coefficient := @coefficient_of_derivative_form
+def publication_path_model_cardinality := @card_pathModelConfiguration
+def publication_path_model_base := pathModelCount_zero
+def publication_closed_form_recurrence := @closedFormCount_recurrence
+def publication_closed_form_base := closedFormCount_zero
+def publication_closed_form_uniqueness := @sequence_eq_closedForm_of_recurrence
+noncomputable def publication_literal_tiling_count := type103TilingCount
+def publication_literal_placement_size := @placementCellList_length
+def publication_literal_placement_nodup := @placementCellList_nodup
+def publication_literal_tiling_tile_count := @literal_tiling_card
+def publication_stone_bone_partition := @rightStoneCount_add_boneCount
+def publication_literal_cell_energy_sum := @literal_cell_energy_sum
+def publication_actual_placement_residue := @placementBaseResidue_spec
+def publication_translated_cell_phase := @translated_local_owner_is_phase
+def publication_placement_energy_sum := @placement_literal_cell_energy_sum
+def publication_tiling_energy_double_count := @tiling_energy_double_count
+def publication_total_literal_tile_energy := @total_literal_tile_energy
+def publication_literal_placement_energy_classification :=
+  @literal_placement_energy_classification
+def publication_literal_tile_energy_count_formula :=
+  @literal_tile_energy_count_formula
+def publication_path_model_rational_kernel :=
+  @fixedSinkCount_eq_rationalKernelTerm
+def publication_wz_polynomial_certificate := @wz_polynomial_certificate
+def publication_wz_point_recurrence := @wz_point_recurrence
+def publication_wz_flux_match_X := @wzOutgoingX_eq_nextIncomingX
+def publication_wz_flux_match_Y := @wzOutgoingY_eq_nextIncomingY
+def publication_wz_boundary_cancellation := @wz_boundary_cancellation
+def publication_path_model_recurrence := @pathModelCount_recurrence
+def publication_path_model_closed_form := @pathModelCount_eq_closedFormCount
+def publication_path_model_ballot_form := @pathModelClosedFormTarget_proved
+def publication_path_model_cardinality_closed_form :=
+  @card_pathModelConfiguration_closed_form
+def publication_path_model_manuscript_form := @pathModelCount_manuscript_form
+def publication_path_model_cardinality_manuscript_form :=
+  @card_pathModelConfiguration_manuscript_form
+def publication_anchor_step_A := @stepA_simplex_coordinates
+def publication_anchor_step_B := @stepB_simplex_coordinates
+def publication_anchor_step_C := @stepC_simplex_coordinates
+def publication_six_good_bone_classes := @exists_unique_goodBoneClass
+def publication_good_bone_source_owner := @exists_goodBone_source_simplex
+def publication_good_bone_target_owner := @exists_goodBone_target_simplex
+def publication_literal_bone_anchor_step := @literalDirectedEdge_anchor_step
+def publication_literal_bone_simplex_step := @literalDirectedEdge_simplex_step
+def publication_good_bone_cell_role := @goodBoneClass_cell_role
+def publication_terminal_support_tree := @terminalSupportGraph_isTree
+def publication_terminal_word_empty :=
+  @literalTilingRightmostTerminal_word_empty
+def publication_conwayLagarias_stone_count :=
+  conwayLagariasStoneCountTarget_proved
+noncomputable def publication_literal_path_equivalence :=
+  literalTilingPathModelEquiv_proved
+def publication_literal_path_equivalence_target :=
+  literalTilingPathModelEquivTarget_proved
+def publication_main_theorem := @manuscript_main_theorem_proved
+noncomputable def publication_literal_path_equivalence_of_conwayLagarias :=
+  @literalTilingPathModelEquiv
+def publication_conditional_main_theorem :=
+  @manuscript_main_theorem_of_conwayLagarias
+def publication_shadow_word_area := @peripheralShadowWord_area_target
+def publication_benzel_boundary_shadow_area :=
+  @peripheralBoundary_shadow_area_target
+def publication_right_stone_shadow_area := @rightStoneShadowWord_summary
+def publication_boneA_shadow_area := @boneAShadowWord_summary
+def publication_boneB_shadow_area := @boneBShadowWord_summary
+def publication_boneC_shadow_area := @boneCShadowWord_summary
+def publication_shadow_conjugation := @identityShadowWord_conjugate
+def publication_shadow_factorization_consumer :=
+  @rightStoneCount_of_shadowFactorization
+def publication_good_small_root_unique := @goodSmallRoot_unique
+def publication_ternary_root_equation := @ternarySeries_equation
+def publication_good_jacobian := @goodJacobian_at_ternaryRoot
+def publication_ternary_lagrange_coefficient :=
+  @coeff_ternarySeries_pow_nine
+def publication_good_total_simplification :=
+  @totalGoodGeneratingSeries_simplified
+def publication_good_total_derivative_form :=
+  @totalGoodGeneratingSeries_derivative_form
+def publication_good_total_coefficient :=
+  @coeff_totalGoodGeneratingSeries_ballot
+def publication_good_wz_cross_check :=
+  @pathModelGeneratingSeries_eq_totalGood
+def publication_good_residue_delta := @goodResidueTransform_one
+def publication_good_polynomial_evaluation :=
+  @goodResidueTransform_polynomial_mul
+def publication_positive_good_correspondence :=
+  @positiveChiralityGeneratingSeries_eq_good
+def publication_negative_good_correspondence :=
+  @negativeChiralityGeneratingSeries_eq_good
+
+end BenzelProblem6Kernel
