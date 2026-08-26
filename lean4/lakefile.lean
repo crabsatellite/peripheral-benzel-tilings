@@ -2,7 +2,7 @@ import Lake
 open Lake DSL
 
 package "PeripheralBenzelTilings" where
-  version := v!"2.0.0"
+  version := v!"2.0.1"
   weakLeanArgs := #["--trust=0", "-M16384"]
   leanOptions := #[
     ⟨`autoImplicit, false⟩,
