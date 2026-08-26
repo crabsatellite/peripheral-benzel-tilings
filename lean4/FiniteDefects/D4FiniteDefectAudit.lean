@@ -1,0 +1,3 @@
+import FiniteDefects.D4FiniteDefect
+
+#print axioms FiniteDefects.d4OneDefectKernelWithReference

@@ -2,7 +2,7 @@ tmp/
 output/*
 !output/pdf/
 output/pdf/*
-!output/pdf/benzel_problem6.pdf
+!output/pdf/peripheral_benzel_tilings.pdf
 lean4/.lake/
 __pycache__/
 *.pyc

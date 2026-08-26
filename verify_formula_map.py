@@ -11,7 +11,7 @@ from pathlib import Path
 ROOT = Path(__file__).resolve().parent
 LEAN_ROOT = ROOT / "lean4"
 SOURCE_ROOT = LEAN_ROOT / "BenzelProblem6Kernel"
-PAPER = ROOT / "benzel_problem6.tex"
+PAPER = ROOT / "peripheral_benzel_tilings.tex"
 
 PUBLICATION_ROOT = Path("BenzelProblem6Kernel/PublicationRoot.lean")
 THEOREM_MAP = Path("BenzelProblem6Kernel/KernelTheoremMap.lean")

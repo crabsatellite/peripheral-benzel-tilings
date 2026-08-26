@@ -1,0 +1,21 @@
+import D4KernelOnly.D4GateSpecialization
+import D4KernelOnly.GeneralBoneCountKernelOnly
+
+/-! # Final trust-zero axiom audit for the d=4 manuscript chain -/
+
+#print axioms FiniteDefects.d4LiteralBoundaryFactorizationStatement_proved
+#print axioms FiniteDefects.d4KernelStoneStatement_proved
+#print axioms FiniteDefects.d4ConwayLagariasStatement_proved
+#print axioms FiniteDefects.offsetD4LiteralTilingEquiv
+#print axioms FiniteDefects.d4OneDefect_from_generalFiniteDefect
+#print axioms FiniteDefects.d4OneDefectKernelOnly
+#print axioms FiniteDefects.d4LiteralTilingEquivPathData_kernelOnly
+#print axioms FiniteDefects.d4LiteralTilingEquivSigmaArmTriple_kernelOnly
+#print axioms FiniteDefects.d4SpecializedTilingCount_eq_literal
+#print axioms FiniteDefects.d4LiteralTilingCount_ballot_formula_kernelOnly
+#print axioms FiniteDefects.d4GeneratingFunctionKernelOnly
+#print axioms FiniteDefects.d4TilingSeriesKernelOnly_eq_literal
+#print axioms FiniteDefects.d4Good_generating_function_literal_kernelOnly
+#print axioms FiniteDefects.D4GeneratingFunctionKernelOnlyEvidence
+#print axioms FiniteDefects.generalBoneCountKernelOnly
+#print axioms FiniteDefects.generalFiniteDefectKernelOnly

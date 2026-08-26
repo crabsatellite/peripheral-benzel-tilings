@@ -1,0 +1,30 @@
+import FiniteDefects.PublicationRoot
+
+#print axioms FiniteDefects.publication_d3k_boundary_labels
+#print axioms FiniteDefects.publication_d3k1_boundary_labels
+#print axioms FiniteDefects.publication_d3k_boundary_energy
+#print axioms FiniteDefects.publication_d3k1_boundary_energy
+#print axioms FiniteDefects.publication_defects_d3k
+#print axioms FiniteDefects.publication_defects_d3k1
+#print axioms FiniteDefects.publication_owner_domain_d3k
+#print axioms FiniteDefects.publication_owner_domain_d3k1
+#print axioms FiniteDefects.publication_owner_domain_d3k2
+#print axioms FiniteDefects.publication_boundaryU_card
+#print axioms FiniteDefects.publication_boundaryV_card
+#print axioms FiniteDefects.publication_boundaryW_card
+#print axioms FiniteDefects.publication_removed_owner_card
+#print axioms FiniteDefects.publication_benzel_cell_has_owner
+#print axioms FiniteDefects.publication_owner_representation_unique
+#print axioms FiniteDefects.publication_literal_owner_transport
+#print axioms FiniteDefects.publication_literal_owner_domain_d3k
+#print axioms FiniteDefects.publication_literal_owner_domain_d3k1
+#print axioms FiniteDefects.publication_literal_owner_domain_d3k2
+#print axioms FiniteDefects.publication_literal_owner_labels_d3k2
+#print axioms FiniteDefects.publication_d3k_boundaryU_literal_labels
+#print axioms FiniteDefects.publication_d3k_boundaryV_literal_labels
+#print axioms FiniteDefects.publication_d3k_boundaryW_literal_labels
+#print axioms FiniteDefects.publication_d3k1_boundaryU_literal_labels
+#print axioms FiniteDefects.publication_d3k1_boundaryV_literal_labels
+#print axioms FiniteDefects.publication_d3k1_boundaryW_literal_labels
+#print axioms FiniteDefects.ownerDomainHierarchyKernel
+#print axioms FiniteDefects.publication_owner_domain_hierarchy

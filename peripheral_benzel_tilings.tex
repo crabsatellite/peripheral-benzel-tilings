@@ -23,7 +23,7 @@
   linkcolor=blue!55!black,
   citecolor=green!40!black,
   urlcolor=blue!55!black,
-  pdftitle={Peripheral Benzel Tilings with Right Stones and Three Bone Orientations},
+  pdftitle={Finite-Defect Path Models for Peripheral Benzel Tilings: Propp's Problem 6 and the First Defect Diagonal},
   pdfauthor={Alex Chengyu Li}
 }
 
@@ -38,18 +38,20 @@
 \newcommand{\Bz}{\mathcal B}
 \newcommand{\cT}{\mathcal T}
 \newcommand{\CT}{\operatorname{CT}}
+\newcommand{\N}{\mathbb N}
+\newcommand{\Q}{\mathbb Q}
 
-\title[Peripheral benzel tilings]
-{Peripheral Benzel Tilings with Right Stones\\
-and Three Bone Orientations}
+\title[Finite-defect peripheral benzel tilings]
+{Finite-Defect Path Models for Peripheral Benzel Tilings:\\
+Propp's Problem 6 and the First Defect Diagonal}
 
 \author{Alex Chengyu Li}
 \address{Independent Researcher, Tokyo, Japan; ORCID 0009-0008-4516-8946}
 \email{cl7076@nyu.edu}
 \date{August 2026}
 \dedicatory{\normalfont\small\textbf{Formalization status.}
-A kernel-only Lean~4 formalization of the results in this manuscript has been
-completed using Mathlib, with no project-specific axioms.}
+Both enumerative chains and the general finite-defect theorem have kernel-only
+Lean~4 formalizations over Mathlib.}
 
 \subjclass[2020]{Primary 05A15, 05B45; Secondary 05A10}
 \keywords{benzel tilings, trihexes, lattice paths, ballot paths,
@@ -59,21 +61,24 @@ multivariate Lagrange inversion}
 
 \begin{abstract}
 Propp asked for the number of tilings of the peripheral benzel
-$\Bz(n,2n-3)$ by right stones and all three orientations of bones.  We prove
-his conjectured formula
+$\Bz(n,2n-3)$ by right stones and all three orientations of bones.  We first
+prove his conjectured formula
 \[
  T_{103}(n,2n-3)
  =\frac{(3n+3)(3n-7)!}{(n-5)!(2n-1)!}\qquad(n\geq5).
 \]
-The proof first partitions the hexagonal cells into periodic three-cell
-owners.  A linear owner-label energy forces every stone to occupy one owner
-and every bone to become a label-preserving directed edge.  The edge set is
-then a directed $Y$: three paths from the deficient corner owners to one
-interior sink, with no other common vertices.  At a fixed sink, the two
-last-edge chiralities reduce to independent one-dimensional ballot counts; in
-one chirality, three adjacent-binomial factors cancel cyclically.  A
-three-variable constant-term evaluation followed by Lagrange inversion gives
-the stated formula.
+The proof partitions the cells into periodic three-cell owners.  A linear
+owner-label energy turns every tiling into a directed $Y$ of three labelled
+ballot paths, whose two sink chiralities are evaluated by a three-variable
+constant term and Lagrange inversion.  We then place this rigid case in a
+finite-defect hierarchy on the diagonals $b=2a-d$.  In the nonoverlap range
+$2k\le a-1$, the exact defect number is $\binom{k}{2}$ for $d=3k$ and
+$\binom{k+1}{2}$ for $d=3k+1$.
+Consequently $d=4$ is the first one-defect diagonal.  Deleting its unique
+defect gives three independent labelled ballot paths and five defect classes.
+A literal inverse construction and a specialized Lagrange--Good evaluation
+yield an algebraic ordinary generating function for every
+$T_{103}(a,2a-4)$.
 \end{abstract}
 
 \maketitle
@@ -673,6 +678,8 @@ gives \eqref{eq:ballot-form}.  Substituting $m=n-5$ proves
 Theorem~\ref{thm:main}.
 \end{proof}
 
+\input{d4_extension}
+
 \section{Computational checks}
 
 A direct exact-cover program implements the barycentric benzel and the
@@ -682,30 +689,32 @@ directed-path program verifies the fixed-sink chirality products and the total
 formula through $n=12$.  These computations are finite consistency checks and
 are not used in the proof of Theorem~\ref{thm:main}.
 
-A kernel-only Lean~4 formalization defines the literal benzel and prototiles,
-proves the tile-count invariant and tiling/path equivalence, and verifies the
-generating-function and closed-form steps.  Its exact 19-label map compiles with
-\texttt{--trust=0}; the endpoints use only \texttt{propext},
-\texttt{Classical.choice}, and \texttt{Quot.sound}.  The finite computations
-above remain independent consistency checks rather than formal premises.
+The Problem 6 kernel-only Lean~4 formalization defines the literal benzel and
+prototiles, proves the tiling/path equivalence, and verifies the generating
+function and closed form.  Its exact 19-label map compiles with
+\texttt{--trust=0}.  The separate $d=4$ development proves the general
+finite-defect theorem, identifies its $d=4$ literal carrier definitionally,
+and kernel checks the one-defect bijection, ballot sum, and Lagrange--Good
+evaluation.  The final audits in both tracks report only the standard Lean
+axioms \texttt{propext}, \texttt{Classical.choice}, and \texttt{Quot.sound}.
+Finite computations remain consistency checks rather than formal premises.
 
 \paragraph{Data and code availability.}
-The complete formalization and reproducibility files are available in the
+The released Problem 6 formalization and reproducibility files are available in the
 \href{https://github.com/crabsatellite/peripheral-benzel-tilings}{public code
 repository}; the versioned software archive has DOI
 \href{https://doi.org/10.5281/zenodo.22079396}{10.5281/zenodo.22079396}.
+The combined source and $d=4$ formalization will accompany the next versioned
+release of the reproducibility archive.
 
 \section*{Declaration of generative AI and AI-assisted technologies in the
 manuscript preparation process}
 
-During the preparation of this work, the author used an author-developed local
-implementation of the Proof Engine framework for AI-assisted mathematical
-research.  The implementation operates through replaceable AI-agent and
-harness components; the present work used OpenAI Codex within that
-implementation.  The framework is described in \emph{Proof Engine
-Infrastructure}~\cite{LiProofEngine2026}.  The author reviewed and edited the
-resulting material and assumes full responsibility for the definitions,
-statements, proofs, citations, code, and exposition.
+During the preparation of this work, the author used OpenAI Codex and an
+author-developed local research system to assist with proof exploration,
+programming, formalization, and language editing.  The author reviewed the
+resulting mathematical statements, computations, citations, and prose and
+takes full responsibility for the content of the manuscript.
 
 \section*{Statements and declarations}
 

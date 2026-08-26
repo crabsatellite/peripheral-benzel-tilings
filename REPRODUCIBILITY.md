@@ -1,57 +1,50 @@
 # Reproducibility
 
-## Kernel-only formal verification
+## Pinned environment
 
-The Lean project uses `leanprover/lean4:v4.16.0` and the pinned Mathlib
-revision in `lean4/lake-manifest.json`. From the repository root, run:
+- Lean: `v4.16.0`
+- Mathlib: `v4.16.0` at the revision pinned by `lean4/lake-manifest.json`
+- Trust setting: `--trust=0`
+- Per-process limit: `-M16384`
 
-```powershell
-python verify_formula_map.py
-```
+## Verify the complete formalization
 
-This command fails closed unless all of the following hold:
-
-- the manuscript's 19 theorem/formula labels exactly equal the map labels;
-- all 43 unique mapped endpoints and all 124 publication endpoints have axiom
-  receipts;
-- the publication root, theorem map, formula map, and both axiom audits compile
-  with `--trust=0`;
-- no project axiom, opaque declaration, `sorry`, `admit`, native-evaluation
-  bridge, or compiler-trust escape occurs in the source tree;
-- every endpoint depends only on `propext`, `Classical.choice`, and
-  `Quot.sound`.
-
-Expected receipt:
-
-```text
-formula_map_kernel_audit=passed labels=19 endpoints=43 publication_endpoints=124 sources=294 trust=0 axioms=Classical.choice,Quot.sound,propext
-```
-
-The verifier applies a 30GB Lean process limit. Keep the aggregate build below
-32GB.
-
-## Direct Lean commands
+From the repository root:
 
 ```powershell
-Set-Location lean4
-lake build BenzelProblem6Kernel.PublicationRoot
-lake env lean --trust=0 -M 30000 -q BenzelProblem6Kernel\KernelTheoremMap.lean
-lake env lean --trust=0 -M 30000 -q BenzelProblem6Kernel\ManuscriptFormulaMap.lean
-lake env lean --trust=0 -M 30000 -q BenzelProblem6Kernel\AxiomAudit.lean
-lake env lean --trust=0 -M 30000 -q BenzelProblem6Kernel\ManuscriptAxiomAudit.lean
+python verify_all.py
 ```
 
-## Paper
+This checks the 20-label Problem 6 map, the 32-label first-defect map, source
+policy, the two exact theorem maps, the combined publication root, and all
+reported axioms.
+
+To compile the combined root directly:
+
+```powershell
+cd lean4
+lake build PeripheralBenzelPublication
+```
+
+## Build the paper
+
+With MiKTeX or another installation providing `pdflatex` and `bibtex`:
 
 ```powershell
 .\build_paper.ps1
 ```
 
-The rendered manuscript is `output/pdf/benzel_problem6.pdf`.
+The final artifact is `output/pdf/peripheral_benzel_tilings.pdf`.  The build
+fails on unresolved references, LaTeX warnings, and overfull or underfull
+boxes.
 
-## Release cache
+## Restore the release cache
 
-The release cache is optional. It is bound to the exact release source and
-contains only files under `lean4/.lake/build/lib/BenzelProblem6Kernel` with
-extensions `.olean`, `.ilean`, `.trace`, and `.hash`. Verify the release asset
-against its SHA-256 manifest before extraction at the repository root.
+Release assets contain a zip archive and JSON manifest bound to the exact
+release source tree.  First obtain Mathlib's cache for the pinned revision,
+then extract the project cache at the repository root.  It restores only
+project artifacts under `lean4/.lake/build/lib/`; Mathlib and internal
+research files are not included.
+
+After extraction, rerun `python verify_all.py`.  Lean checks imported `.olean`
+artifacts and recompiles any source whose cache is stale.

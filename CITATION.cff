@@ -1,8 +1,8 @@
 cff-version: 1.2.0
 message: "If you use this work, please cite the accompanying article."
-title: "Peripheral Benzel Tilings with Right Stones and Three Bone Orientations"
-version: 1.0.0
-date-released: 2026-08-24
+title: "Finite-Defect Path Models for Peripheral Benzel Tilings"
+version: 2.0.0
+date-released: 2026-08-26
 doi: "10.5281/zenodo.22079396"
 authors:
   - family-names: Li
@@ -12,7 +12,7 @@ repository-code: "https://github.com/crabsatellite/peripheral-benzel-tilings"
 url: "https://github.com/crabsatellite/peripheral-benzel-tilings"
 preferred-citation:
   type: article
-  title: "Peripheral Benzel Tilings with Right Stones and Three Bone Orientations"
+  title: "Finite-Defect Path Models for Peripheral Benzel Tilings: Propp's Problem 6 and the First Defect Diagonal"
   year: 2026
   doi: "10.5281/zenodo.22057378"
   authors:

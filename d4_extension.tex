@@ -1,0 +1,438 @@
+% Imported and adapted from the closed standalone d=4 manuscript.
+% All labels are prefixed d4: to keep the combined paper map unambiguous.
+
+The second main result evaluates the complete first-defect diagonal.
+
+\begin{samepage}
+\begin{theorem}[First defect diagonal]\label{d4:thm:main}
+Let $T=T(z)\in\Q[[z]]$ be the unique series with constant coefficient $1$
+such that $T=1+zT^3$, and put
+\[
+ D=(3-2T)(T^2-3T+3).
+\]
+Then
+\begin{equation}\label{d4:eq:main-formula}
+ \sum_{m\ge0}T_{103}(m+4,2m+4)z^m
+ =\frac{T^3}{D}
+   (9-6T+27T^2-35T^3+11T^4+2T^5-T^6).
+\end{equation}
+\end{theorem}
+\end{samepage}
+
+\section{Finite defects and the first defect diagonal}
+
+We use an integer-coordinate realization of the hexagonal grid.  A cell is a
+pair $(i,j)\in\mathbb Z^2$, with $\kappa=1-i-j$.  The $(a,b)$-benzel is
+\begin{equation}\label{d4:eq:benzel}
+ \Bz(a,b)=\left\{(i,j):
+ 1-a\le j-i,\ \kappa-j,\ i-\kappa\le b-1\right\}.
+\end{equation}
+This is equivalent to the geometric definition in~\cite{DLPY}.
+
+Put $n=a-2$.  An \emph{owner anchor} is a pair $(q,r)$ satisfying
+\[
+ q-r\equiv n\pmod 3.
+\]
+It owns the three labelled cells
+\[
+ (q,r)_0,\qquad(q+1,r)_1,\qquad(q,r+1)_2.
+\]
+Every grid cell has exactly one owner and one label.  For an owner meeting the
+benzel, define
+\begin{equation}\label{d4:eq:uvw}
+ u=\frac{n-q+r}{3},\qquad
+ v=\frac{n-q-2r}{3},\qquad
+ w=\frac{n+2q+r}{3}.
+\end{equation}
+Then $u,v,w\in\N$ and $u+v+w=n$.  Conversely,
+\[
+ q=w-u,\qquad r=u-v,
+\]
+so the owner is recovered from its simplex point.
+
+The three cells owned by $(u,v,w)$ have difference triples
+\begin{equation}\label{d4:eq:difference-table}
+\begin{array}{c|ccc}
+\text{label}&j-i&\kappa-j&i-\kappa\\ \midrule
+0&3u-n&3v-n+1&3w-n-1\\
+1&3u-n-1&3v-n&3w-n+1\\
+2&3u-n+1&3v-n-1&3w-n.
+\end{array}
+\end{equation}
+Substitution into~\eqref{d4:eq:benzel} gives the following truncation.
+
+\begin{lemma}[Owner-domain truncation]\label{d4:lem:owner-domain}
+Suppose $d=3k$ or $d=3k+1$, the benzel parameters are admissible, and
+$2k\le n+1$.  The
+owners meeting $\Bz(a,2a-d)$ are exactly
+\[
+ \Delta_n^{(k)}=\{(u,v,w)\in\N^3:u+v+w=n,\
+     \max(u,v,w)\le n-k+1\}.
+\]
+Each of the three boundary segments $u=n-k+1$, $v=n-k+1$, and
+$w=n-k+1$ contains $k$ deficient owners.  If $d=3k$, each deficient owner
+contains two cells; if $d=3k+1$, it contains one cell.
+\end{lemma}
+
+\begin{proof}
+For $d=3k$, label $0$ is present exactly when
+\[
+ u,w\le n-k+1,\qquad v\le n-k,
+\]
+and the other two conditions are obtained cyclically.  For $d=3k+1$, label
+$0$ is present exactly when
+\[
+ u,v\le n-k,\qquad w\le n-k+1,
+\]
+again with cyclic analogues.  Taking the union over labels gives
+$\Delta_n^{(k)}$.  On, for example, $u=n-k+1$, the remaining coordinates
+are $(v,w)=(j,k-1-j)$ for $0\le j<k$, proving the boundary count and the
+claimed multiplicities.
+\end{proof}
+
+Define the label potentials at owner $(q,r)$ by
+\begin{equation}\label{d4:eq:potential}
+ h_0(q,r)=q+r,\qquad h_1(q,r)=-q,\qquad h_2(q,r)=-r.
+\end{equation}
+Their sum at a full owner is zero.  A direct check on the four allowed
+prototiles gives the local energy table
+\begin{equation}\label{d4:eq:energy-table}
+\begin{array}{c|cccc}
+\text{tile class}&\substack{\text{in-phase}\\\text{stone}}
+ &\substack{\text{wrong-phase}\\\text{stone}}
+ &\substack{\text{two-owner}\\\text{bone}}
+ &\substack{\text{three-owner}\\\text{bone}}\\ \midrule
+\text{energy}&0&3&1&4.
+\end{array}
+\end{equation}
+A right stone is \emph{in phase} when it is one owner triple; otherwise it is
+wrong phase.  A bone meets either two or three owners.
+
+\begin{theorem}[Finite-defect theorem]\label{d4:thm:defects}
+Put $n=a-2$, and suppose $k\ge1$ and $2k\le n+1$.  Assume that
+$\Bz(a,2a-d)$ has a type-$103$ tiling.  Let $s$ be the number of wrong-phase
+stones and $f$ the number of three-owner bones.
+\begin{enumerate}
+\item If $d=3k$, then $s+f=\binom{k}{2}$.
+\item If $d=3k+1$, then $s+f=\binom{k+1}{2}$.
+\end{enumerate}
+\end{theorem}
+
+\begin{proof}
+Along one deficient boundary, the sum of the potentials of its present cells
+is
+\[
+ \sum_{j=0}^{k-1}(n-2k+2+j)
+   =k\left(n-\frac{3(k-1)}2\right).
+\]
+The three cyclic boundary sums are equal.  Hence the energy of the entire
+region is
+\begin{equation}\label{d4:eq:region-energy}
+ E_{a,d}=3k\left(a-\frac{3k+1}{2}\right).
+\end{equation}
+Using the benzel area and Conway--Lagarias invariant from~\cite{DLPY}, the
+number $B$ of bones in any type-$103$ tiling is
+\begin{equation}\label{d4:eq:bone-counts}
+ B=\begin{cases}
+ 3k(a-2k),&d=3k,\\
+ 3k(a-2k-1),&d=3k+1.
+ \end{cases}
+\end{equation}
+Indeed, the invariant fixes the number of right stones, and the area fixes
+the total number of trihexes.  Finally, summing~\eqref{d4:eq:energy-table} over
+the tiling gives
+\[
+ E_{a,d}=B+3(s+f).
+\]
+Substitution of~\eqref{d4:eq:region-energy} and~\eqref{d4:eq:bone-counts} yields
+the two formulas.
+\end{proof}
+
+\begin{remark}
+If $d=3k+2$, all three labels at an owner have the same presence condition
+$\max(u,v,w)\le n-k$.  The resulting all-right-stone tiling is the unique
+stones-and-bones tiling by~\cite[Theorem~1.1]{DLPY}.  This known residue class
+is not part of the new defect count in Theorem~\ref{d4:thm:defects}.
+\end{remark}
+
+For $d=3$, Theorem~\ref{d4:thm:defects} gives zero defects.  For $d=4$, it gives
+exactly one.  We now classify and count that one-defect case.
+
+\section{The one-defect path bijection}
+
+Set
+\[
+ a=m+4,\qquad b=2m+4,\qquad n=m+2.
+\]
+The owner domain is the full simplex $\Delta_n$, except that each of its three
+corner owners contains a single boundary cell.  Every tiling has one bad
+tile, of one of five kinds: two wrong-stone phases or one of the three bone
+orientations in its three-owner phase.
+
+The five possibilities admit the following uniform parameterization.  Write
+$p=(x,y,z)$ and let $c_\ell$ be the owner of the label-$\ell$ cell of the bad
+tile.  The condition $p\in\Delta_r$ means $x+y+z=r$.
+\begin{equation}\label{d4:eq:defect-cores}
+\begin{array}{c|c|ccc}
+\text{class}&\text{parameter}&c_0&c_1&c_2\\ \midrule
+S_1&p\in\Delta_m
+ &(x+1,y,z+1)&(x+1,y+1,z)&(x,y+1,z+1)\\
+S_2&p\in\Delta_{m+1}
+ &(x,y,z+1)&(x+1,y,z)&(x,y+1,z)\\
+B_A&p\in\Delta_m
+ &(x,y,z+2)&(x+1,y+1,z)&(x,y+1,z+1)\\
+B_B&p\in\Delta_m
+ &(x+1,y,z+1)&(x+1,y+1,z)&(x,y+2,z)\\
+B_C&p\in\Delta_m
+ &(x+1,y,z+1)&(x+2,y,z)&(x,y+1,z+1).
+\end{array}
+\end{equation}
+Here $S_1,S_2$ are the two wrong-stone phases, and $B_A,B_B,B_C$
+are the three three-owner bone classes.  These formulas follow by applying
+\eqref{d4:eq:uvw} to the three cells of each translated prototile; in
+particular, they are literal placement coordinates rather than a quotient or
+orbit parameterization.
+
+Delete the bad tile.  Every remaining bone is a two-owner bone; orient it
+from the owner containing two of its cells toward the owner containing its
+third cell.  Label the edge by that third cell's label.  We call the resulting
+directed graph the \emph{owner graph}.
+
+In owner-anchor coordinates, put
+\[
+ \alpha=(2,-1),\qquad \beta=(-1,-1),\qquad \gamma=(-1,2).
+\]
+A label-$0$ edge has step $\alpha$ or $\gamma$, a label-$1$ edge has step
+$\beta$ or $\gamma$, and a label-$2$ edge has step $\alpha$ or $\beta$.
+Equivalently, in simplex coordinates these steps are
+\[
+ \alpha=(-1,0,1),\qquad
+ \beta=(0,1,-1),\qquad
+ \gamma=(1,-1,0).
+\]
+An \emph{admissible label-$\ell$ path} is a directed path from $c_\ell$ to
+the one-cell boundary owner of label $\ell$, using the corresponding two
+steps and remaining in $\Delta_n$.  The path with no edges is allowed exactly
+when its two endpoints coincide.
+
+\begin{lemma}[Three paths]\label{d4:lem:three-paths}
+The owner graph is the disjoint union of three directed paths.  For each
+$\ell\in\{0,1,2\}$, the label-$\ell$ path begins at the owner of the
+label-$\ell$ cell of the bad tile and ends at the one-cell boundary owner of
+label $\ell$.  A path may be empty when its initial owner is already its
+boundary endpoint.
+\end{lemma}
+
+\begin{proof}
+At a full owner away from the defect, the local exact-cover alternatives are:
+an in-phase stone and no incident edge; one incoming and one outgoing edge of
+the same label; or three incoming edges, one of each label.  This is the
+complete six-class check supplied by the two allowed bone phases in each
+orientation.  Thus every owner incident to an edge is a pass-through vertex
+unless it is a source or terminal.  At the three defect owners, the bad tile
+covers the label-$\ell$ cell and the first label-$\ell$ edge covers the other
+two cells.  At a one-cell boundary owner, an incoming edge covers its unique
+cell, so that owner can only be terminal.
+The label potentials in~\eqref{d4:eq:potential} strictly change along directed
+edges, so directed cycles are impossible.  Summing indegree minus outdegree
+over each component, and using the three defect incidences and the three
+boundary deficits, rules out an internal three-incoming terminal and pairs
+each defect owner with one boundary owner.  Local cell labels are preserved
+through a pass-through owner; hence the endpoints have the same label.
+\end{proof}
+
+The path steps have a useful monotonicity in simplex coordinates:
+\begin{equation}\label{d4:eq:path-monotonicity}
+\begin{array}{c|cc}
+\text{label}&\text{nonincreasing}&\text{nondecreasing}\\ \midrule
+0&v&w\\
+1&w&u\\
+2&u&v.
+\end{array}
+\end{equation}
+For every one of the five defect classes, the three initial owners satisfy
+strict cyclic separations
+\begin{equation}\label{d4:eq:core-separation}
+ w(c_1)<w(c_0),\qquad u(c_2)<u(c_1),\qquad v(c_0)<v(c_2).
+\end{equation}
+The inequalities are read directly from the five rows of
+\eqref{d4:eq:defect-cores}.  For example, every row has
+$w(c_1)<w(c_0)$.  A label-$0$ path can only increase $w$, whereas a label-$1$
+path can only decrease it, so these two paths cannot meet.  The other two
+inequalities give the same argument for labels $(1,2)$ using $u$ and labels
+$(2,0)$ using $v$.  Hence independently chosen paths of successive labels
+cannot share an owner.
+
+Conversely, fix a bad tile and three admissible labelled paths.  Install the
+bad tile, realize each path edge by its corresponding bone, and put the
+in-phase right stone at every unused full owner.  At a core owner, the bad
+cell and first edge cover all present cells; at a pass-through owner, the
+incoming edge covers the path label and the outgoing edge covers the other
+two; and at the boundary endpoint, the incoming edge covers the unique cell.
+Thus the construction is a literal exact cover.  Its local description also
+shows that it inverts deletion of the bad tile.
+
+\begin{proposition}[Literal bijection]\label{d4:prop:bijection}
+For every $m\ge0$, type-$103$ tilings of $\Bz(m+4,2m+4)$ are in bijection
+with a choice of one of the five defect classes and three independently
+admissible labelled paths from its core owners to the corresponding boundary
+owners.
+\end{proposition}
+
+\section{Ballot enumeration}
+
+For $p,q\in\N$, put
+\begin{equation}\label{d4:eq:R}
+ R(p,q)=\binom{p+2q}{q}-\binom{p+2q}{q-1},
+\end{equation}
+where the second term is zero when $q=0$.  By the reflection principle,
+$R(p,q)$ counts walks starting at height $p$, with $q$ up-steps and $p+q$
+down-steps, that never go below zero.  Equivalently,
+\begin{equation}\label{d4:eq:R-coeff}
+ R(p,q)=[x^q](1-x)(1+x)^{p+2q}.
+\end{equation}
+
+For a simplex point $(u,v,w)$, the three labelled path counts are cyclically
+$R(u,v)$, $R(v,w)$, and $R(w,u)$.  Substituting the five core
+parameterizations into these three factors gives the next theorem.
+
+Indeed, read a path backwards from its boundary endpoint.  For label $0$, the
+two reverse steps become the down- and up-steps of a ballot walk that starts
+at height $u$, has $v$ up-steps and $u+v$ down-steps, and ends at height zero.
+Thus its count is $R(u,v)$.  Cyclic permutation gives $R(v,w)$ and $R(w,u)$
+for labels $1$ and $2$.  Applying this rule to~\eqref{d4:eq:defect-cores} gives
+\[
+\begin{array}{c|c}
+\text{class}&\text{product of its three arm counts}\\ \midrule
+S_1&R(x+1,y)R(y+1,z)R(z+1,x)\\
+S_2&R(x,y)R(y,z)R(z,x)\\
+B_A&R(x,y)R(y+1,z)R(z+1,x)\\
+B_B&R(x+1,y)R(y+1,z)R(z,x)\\
+B_C&R(x+1,y)R(y,z)R(z+1,x).
+\end{array}
+\]
+The last two rows are cyclic reindexings of the $B_A$ sum.
+
+\begin{theorem}[Exact cyclic ballot sum]\label{d4:thm:d4-sum}
+For $m=a-4$, define
+\begin{align}
+ A_m&=\sum_{x+y+z=m+1}R(x,y)R(y,z)R(z,x),\label{d4:eq:A}\\
+ C_m&=\sum_{x+y+z=m}R(x+1,y)R(y+1,z)R(z+1,x),\label{d4:eq:C}\\
+ H_m&=\sum_{x+y+z=m}R(x,y)R(y+1,z)R(z+1,x).\label{d4:eq:H}
+\end{align}
+Then
+\begin{equation}\label{d4:eq:ballot-sum}
+ T_{103}(a,2a-4)=A_m+C_m+3H_m.
+\end{equation}
+\end{theorem}
+
+\begin{proof}
+The second wrong-stone phase is parameterized by
+$x+y+z=m+1$ and gives~\eqref{d4:eq:A}; the first is parameterized by
+$x+y+z=m$ and gives~\eqref{d4:eq:C}.  One three-owner bone orientation gives
+\eqref{d4:eq:H}.  The other two orientations yield cyclic permutations of its
+summand, hence the same total.  Proposition~\ref{d4:prop:bijection} makes the
+three arm choices independent and proves that these five classes exhaust the
+literal tilings without multiplicity.
+\end{proof}
+
+\section{Lagrange--Good evaluation}
+
+We evaluate all coefficients at once.  Let $x_0,x_1,x_2$ be commuting
+variables and read subscripts cyclically.  Define
+\begin{equation}\label{d4:eq:phi}
+ \phi_0=(1+x_0)^2(1+x_1),\quad
+ \phi_1=(1+x_1)^2(1+x_2),\quad
+ \phi_2=(1+x_2)^2(1+x_0),
+\end{equation}
+and $w_i=x_i/\phi_i$.  The specialized Good determinant is
+\begin{equation}\label{d4:eq:determinant}
+ \Delta(x)=
+ \frac{1-x_0-x_1-x_2+x_0x_1+x_0x_2+x_1x_2-2x_0x_1x_2}
+ {(1+x_0)(1+x_1)(1+x_2)}.
+\end{equation}
+
+The multivariate Lagrange--Good formula~\cite{Good,Hofbauer} applies to every
+formal series
+\[
+ F\in\Q[[x_0,x_1,x_2]]
+\]
+and gives
+\begin{equation}\label{d4:eq:good-expansion}
+ F(x)=\sum_{\boldsymbol r\in\N^3}
+ [x^{\boldsymbol r}]\,
+ F(x)\phi(x)^{\boldsymbol r}\Delta(x)\,
+ w(x)^{\boldsymbol r}.
+\end{equation}
+For completeness, the determinant in~\eqref{d4:eq:determinant} is obtained by
+expanding
+\[
+ \det\left(\delta_{ij}-\frac{x_j}{\phi_i}
+   \frac{\partial\phi_i}{\partial x_j}\right)_{0\le i,j\le2}.
+\]
+
+Introduce the three numerators
+\begin{align*}
+ N_A&=(1-x_0)(1-x_1)(1-x_2),\\
+ N_C&=(1-x_0^2)(1-x_1^2)(1-x_2^2),\\
+ N_H&=(1-x_0^2)(1-x_1)(1-x_2^2),
+\end{align*}
+and put
+\[
+ F_A=\frac{N_A}{\Delta},\qquad
+ F_C=\frac{N_C}{\Delta},\qquad
+ F_H=\frac{N_H}{\Delta}.
+\]
+For $F=\sum_{i,j,k\ge0}f_{i,j,k}x_0^ix_1^jx_2^k$, define its total-degree
+diagonal by
+\[
+ \operatorname{Diag}F(z)=\sum_{r\ge0}
+   \left(\sum_{i+j+k=r}f_{i,j,k}\right)z^r.
+\]
+Using~\eqref{d4:eq:R-coeff}, the coefficient in~\eqref{d4:eq:good-expansion} is,
+respectively, the summand in~\eqref{d4:eq:A}, \eqref{d4:eq:C}, or~\eqref{d4:eq:H}.
+Thus total-degree diagonalization of~\eqref{d4:eq:good-expansion} gives the three
+component series.
+
+To make this explicit, write
+\[
+ A_0(r)=\sum_{x+y+z=r}R(x,y)R(y,z)R(z,x)
+\]
+and let $A_0(z)=\sum_{r\ge0}A_0(r)z^r$, with analogous notation for
+$C(z)$ and $H(z)$.  On the diagonal $x_0=x_1=x_2=s$, all three $w_i$ equal
+\begin{equation}\label{d4:eq:q}
+ q(s)=\frac{s}{(1+s)^3}.
+\end{equation}
+The determinant becomes
+\begin{equation}\label{d4:eq:diag-delta}
+ \Delta(s,s,s)=
+ \frac{(1-2s)(1-s+s^2)}{(1+s)^3}.
+\end{equation}
+Consequently,
+\begin{align}
+ A_0(q(s))&=\frac{(1-s)^3(1+s)^3}
+ {(1-2s)(1-s+s^2)},\label{d4:eq:A-good}\\
+ C(q(s))&=\frac{(1-s)^3(1+s)^6}
+ {(1-2s)(1-s+s^2)},\label{d4:eq:C-good}\\
+ H(q(s))&=\frac{(1-s)^3(1+s)^5}
+ {(1-2s)(1-s+s^2)}.\label{d4:eq:H-good}
+\end{align}
+
+Now let $T=1+zT^3$ and set $s=T-1$.  Equation~\eqref{d4:eq:q} gives
+$q(s)=z$.  If
+\[
+ D=(3-2T)(T^2-3T+3),
+\]
+then~\eqref{d4:eq:A-good}--\eqref{d4:eq:H-good} become
+\begin{equation}\label{d4:eq:three-components}
+ A_0(z)=\frac{T^3(2-T)^3}{D},\qquad
+ C(z)=\frac{T^6(2-T)^3}{D},\qquad
+ H(z)=\frac{T^5(2-T)^3}{D}.
+\end{equation}
+Since $A_m=A_0(m+1)$ and $A_0(0)=1$,
+\[
+ \sum_{m\ge0}A_mz^m=\frac{A_0(z)-1}{z}.
+\]
+Combining this identity with~\eqref{d4:eq:ballot-sum} and
+\eqref{d4:eq:three-components}, then using $z=(T-1)/T^3$, gives exactly the
+rational function in Theorem~\ref{d4:thm:main}.

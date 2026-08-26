@@ -9,23 +9,23 @@ $env:FORCE_SOURCE_DATE = '1'
 Push-Location $projectRoot
 try {
     $outputArgument = "-output-directory=$outputDir"
-    pdflatex -interaction=nonstopmode -halt-on-error $outputArgument benzel_problem6.tex
+    pdflatex -interaction=nonstopmode -halt-on-error $outputArgument peripheral_benzel_tilings.tex
     if ($LASTEXITCODE -ne 0) { throw 'first pdflatex pass failed' }
-    bibtex (Join-Path $outputDir 'benzel_problem6')
+    bibtex (Join-Path $outputDir 'peripheral_benzel_tilings')
     if ($LASTEXITCODE -ne 0) { throw 'bibtex pass failed' }
-    pdflatex -interaction=nonstopmode -halt-on-error $outputArgument benzel_problem6.tex
+    pdflatex -interaction=nonstopmode -halt-on-error $outputArgument peripheral_benzel_tilings.tex
     if ($LASTEXITCODE -ne 0) { throw 'second pdflatex pass failed' }
-    pdflatex -interaction=nonstopmode -halt-on-error $outputArgument benzel_problem6.tex
+    pdflatex -interaction=nonstopmode -halt-on-error $outputArgument peripheral_benzel_tilings.tex
     if ($LASTEXITCODE -ne 0) { throw 'final pdflatex pass failed' }
 } finally {
     Pop-Location
 }
 
-$logPath = Join-Path $outputDir 'benzel_problem6.log'
+$logPath = Join-Path $outputDir 'peripheral_benzel_tilings.log'
 $badLog = Select-String -Path $logPath -Pattern 'undefined|Overfull|Underfull|LaTeX Warning' -CaseSensitive:$false
 if ($badLog) {
     $badLog | ForEach-Object { Write-Error $_.Line }
     throw 'paper log contains unresolved warnings'
 }
 
-Write-Host "Built $outputDir\benzel_problem6.pdf"
+Write-Host "Built $outputDir\peripheral_benzel_tilings.pdf"
