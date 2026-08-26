@@ -138,9 +138,23 @@ number $B$ of bones in any type-$103$ tiling is
  3k(a-2k-1),&d=3k+1.
  \end{cases}
 \end{equation}
-Indeed, the invariant fixes the number of right stones, and the area fixes
-the total number of trihexes.  Finally, summing~\eqref{d4:eq:energy-table} over
-the tiling gives
+Here is the substitution explicitly.  In terms of $n=a-2$, the area formula
+gives the following numbers $N$ of trihexes, while the invariant gives the
+numbers $S$ of right stones:
+\[
+\begin{array}{c|cc}
+ &N&S\\ \midrule
+d=3k
+ &\dfrac{n^2+3n+2-3k^2+k}{2}
+ &\dfrac{n^2+3n+2+9k^2-6kn-11k}{2}\\[5pt]
+d=3k+1
+ &\dfrac{n^2+3n+2-3k^2-k}{2}
+ &\dfrac{n^2+3n+2+9k^2-6kn-7k}{2}.
+\end{array}
+\]
+Since every tile has three cells and no left stones are allowed, $B=N-S$;
+this is exactly~\eqref{d4:eq:bone-counts}.  Finally,
+summing~\eqref{d4:eq:energy-table} over the tiling gives
 \[
  E_{a,d}=B+3(s+f).
 \]
@@ -155,8 +169,11 @@ stones-and-bones tiling by~\cite[Theorem~1.1]{DLPY}.  This known residue class
 is not part of the new defect count in Theorem~\ref{d4:thm:defects}.
 \end{remark}
 
-For $d=3$, Theorem~\ref{d4:thm:defects} gives zero defects.  For $d=4$, it gives
-exactly one.  We now classify and count that one-defect case.
+The offsets $d=0,1,2$ have the unique all-right-stone tilings described in
+\cite[Theorem~1.1 and Remark~5.1]{DLPY}; in particular they have no defect.
+For $d=3$, Theorem~\ref{d4:thm:defects} again gives zero defects.  Thus $d=4$
+is the first diagonal with a nonzero defect count, and that count is exactly
+one.  We now classify and enumerate this one-defect case.
 
 \section{The one-defect path bijection}
 
@@ -229,16 +246,32 @@ an in-phase stone and no incident edge; one incoming and one outgoing edge of
 the same label; or three incoming edges, one of each label.  This is the
 complete six-class check supplied by the two allowed bone phases in each
 orientation.  Thus every owner incident to an edge is a pass-through vertex
-unless it is a source or terminal.  At the three defect owners, the bad tile
-covers the label-$\ell$ cell and the first label-$\ell$ edge covers the other
-two cells.  At a one-cell boundary owner, an incoming edge covers its unique
-cell, so that owner can only be terminal.
-The label potentials in~\eqref{d4:eq:potential} strictly change along directed
-edges, so directed cycles are impossible.  Summing indegree minus outdegree
-over each component, and using the three defect incidences and the three
-boundary deficits, rules out an internal three-incoming terminal and pairs
-each defect owner with one boundary owner.  Local cell labels are preserved
-through a pass-through owner; hence the endpoints have the same label.
+unless it is a source or terminal.  At a defect owner distinct from its
+labelled boundary owner, the bad tile covers the label-$\ell$ cell and one
+outgoing label-$\ell$ edge covers the other two cells.  At a boundary owner
+not already occupied by the bad tile, one incoming edge covers its unique
+cell.  If a defect owner is already its matching boundary owner, these two
+incidences cancel and give the allowed empty path.
+
+The label potentials in~\eqref{d4:eq:potential} strictly increase along
+directed edges, so directed cycles are impossible.  Remove the empty paths
+from the following count.  For a connected component $C$, let $S_C$ be its
+number of defect sources, $B_C$ its number of one-cell boundary terminals,
+and $K_C$ its number of internal three-incoming terminals.  Every remaining
+vertex has one incoming and one outgoing edge.  Summing outdegree minus
+indegree over $C$ therefore gives
+\[
+ S_C=B_C+3K_C.
+\]
+Globally the numbers of nonempty defect sources and nonempty boundary
+terminals are equal: both are three minus the number of empty paths.  Hence
+$\sum_C K_C=0$, so no internal three-incoming terminal occurs.  With no
+merger and no directed cycle, every nonempty component is a single directed
+path with one defect source and one boundary terminal; an additional
+component would have neither a source nor a terminal and would therefore
+contain a directed cycle.  Local exact coverage at a pass-through owner
+forces its incoming and outgoing edges to carry the same label.  The source
+and terminal labels consequently agree, proving the stated three paths.
 \end{proof}
 
 The path steps have a useful monotonicity in simplex coordinates:
@@ -265,12 +298,13 @@ cannot share an owner.
 
 Conversely, fix a bad tile and three admissible labelled paths.  Install the
 bad tile, realize each path edge by its corresponding bone, and put the
-in-phase right stone at every unused full owner.  At a core owner, the bad
-cell and first edge cover all present cells; at a pass-through owner, the
-incoming edge covers the path label and the outgoing edge covers the other
-two; and at the boundary endpoint, the incoming edge covers the unique cell.
-Thus the construction is a literal exact cover.  Its local description also
-shows that it inverts deletion of the bad tile.
+in-phase right stone at every unused full owner.  At a nonterminal core owner,
+the bad cell and first edge cover all present cells; for an empty path, the
+bad tile covers the unique cell of the coincident core/boundary owner.  At a
+pass-through owner, the incoming edge covers the path label and the outgoing
+edge covers the other two; at a nonempty boundary endpoint, the incoming edge
+covers the unique cell.  Thus the construction is a literal exact cover.  Its
+local description also shows that it inverts deletion of the bad tile.
 
 \begin{proposition}[Literal bijection]\label{d4:prop:bijection}
 For every $m\ge0$, type-$103$ tilings of $\Bz(m+4,2m+4)$ are in bijection

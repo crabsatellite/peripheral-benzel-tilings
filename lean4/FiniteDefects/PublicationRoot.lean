@@ -2,12 +2,12 @@ import FiniteDefects.DefectArithmetic
 import FiniteDefects.OwnerDomainHierarchy
 
 /-!
-# Current kernel root
+# Historical owner-domain compatibility root
 
-This root contains the owner-boundary and arithmetic producers already
-translated without project axioms.  It is not yet the final literal tiling
-consumer; the two-parameter exact-cover and boundary-energy transports remain
-explicitly open.
+This import path is retained for users of the earlier owner-boundary API.  The
+combined publication root is `PeripheralBenzelPublication`; it imports the
+literal exact-cover, finite-defect, bijection, enumeration, and generating-
+function consumers audited for the current manuscript.
 -/
 
 namespace FiniteDefects

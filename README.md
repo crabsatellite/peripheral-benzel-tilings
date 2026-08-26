@@ -45,6 +45,9 @@ The exact publication endpoints include:
 All final audits report only Lean/Mathlib's standard `propext`,
 `Classical.choice`, and `Quot.sound` principles.  The project uses Lean 4.16.0,
 Mathlib 4.16.0, `--trust=0`, and a 16GB per-process ceiling.
+The release gate also requires a nonempty Lean endpoint map for every one of
+the 32 labelled results in the first-defect part; the current map has 46 unique
+audited endpoints.
 
 Run the complete fail-closed audit from the repository root:
 

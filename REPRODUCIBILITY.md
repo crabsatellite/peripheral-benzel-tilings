@@ -15,9 +15,9 @@ From the repository root:
 python verify_all.py
 ```
 
-This checks the 20-label Problem 6 map, the 32-label first-defect map, source
-policy, the two exact theorem maps, the combined publication root, and all
-reported axioms.
+This checks the 20-label Problem 6 map, the 32-label first-defect map (currently
+46 unique Lean endpoints), source policy, the two exact theorem maps, the
+combined publication root, and all reported axioms.
 
 To compile the combined root directly:
 

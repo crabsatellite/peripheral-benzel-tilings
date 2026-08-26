@@ -1,49 +1,124 @@
 import D4KernelOnly.D4KernelOnlyFinalAudit
 
-/-! # Machine-checked paper-to-Lean map for the d=4 closure -/
+/-!
+# Fail-closed paper-to-Lean map for the d=4 closure
 
+Each `paper-label` line is consumed by `verify_all.py`.  Label order, label
+identity, and every declaration named before the next label are audited.  A
+renamed, missing, or silently unmapped manuscript claim therefore fails the
+release check.
+-/
+
+-- paper-label: d4:thm:main
+#check FiniteDefects.d4GeneratingFunctionKernelOnly
+
+-- paper-label: d4:eq:main-formula
+#check FiniteDefects.d4Good_generating_function_literal_kernelOnly
+
+-- paper-label: d4:eq:benzel
 #check FiniteDefects.inBenzel
-#check FiniteDefects.ownerCell
+
+-- paper-label: d4:eq:uvw
+#check FiniteDefects.ownerQ
+#check FiniteDefects.ownerR
+
+-- paper-label: d4:eq:difference-table
+#check FiniteDefects.owner_cell_zero_differences
+#check FiniteDefects.owner_cell_one_differences
+#check FiniteDefects.owner_cell_two_differences
+
+-- paper-label: d4:lem:owner-domain
 #check FiniteDefects.ownerDomainHierarchyKernel
-#check FiniteDefects.protoCells
-#check FiniteDefects.allowedStep
+
+-- paper-label: d4:eq:potential
+#check FiniteDefects.ownerPotential
+
+-- paper-label: d4:eq:energy-table
+#check FiniteDefects.stone_energy_by_residue
+#check FiniteDefects.boneA_energy_by_residue
+#check FiniteDefects.boneB_energy_by_residue
+#check FiniteDefects.boneC_energy_by_residue
+
+-- paper-label: d4:thm:defects
+#check FiniteDefects.generalFiniteDefectKernelOnly
+
+-- paper-label: d4:eq:region-energy
+#check FiniteDefects.d3k_exact_energy_count_identity
+#check FiniteDefects.d3k1_exact_energy_count_identity
+
+-- paper-label: d4:eq:bone-counts
+#check FiniteDefects.generalBoneCountKernelOnly
+
+-- paper-label: d4:eq:defect-cores
 #check FiniteDefects.D4DefectParameter.core
-#check FiniteDefects.d4LiteralBoundaryWalk_labels
-#check FiniteDefects.d4LiteralBoundary_continuous
-#check FiniteDefects.directedEdgeCoefficient_d4LiteralBoundaryWalk_sideFive
-#check FiniteDefects.directedEdgeCoefficient_d4LiteralBoundaryWalk_allSides
-#check FiniteDefects.d4PerimeterEdges_perm_reduced
-#check FiniteDefects.d4TilingComplexDirectedEdges_reverse_mem
-#check FiniteDefects.d4TerminalSupportGraph_isTree
-#check FiniteDefects.d4ReducedRightmostTerminal_word_empty
-#check FiniteDefects.d4LiteralBoundaryFactorizationStatement_proved
-#check FiniteDefects.d4ConwayLagariasStatement_proved
-#check FiniteDefects.d4OneDefectKernelOnly
+
+-- paper-label: d4:lem:three-paths
 #check FiniteDefects.d4LiteralTilingEquivPathData_kernelOnly
+#check FiniteDefects.d4TerminalSupportGraph_isTree
+
+-- paper-label: d4:eq:path-monotonicity
+#check FiniteDefects.d4AbstractEdge_zero_mono
+#check FiniteDefects.d4AbstractEdge_one_mono
+#check FiniteDefects.d4AbstractEdge_two_mono
+
+-- paper-label: d4:eq:core-separation
+#check FiniteDefects.d4_core_zero_w_gt_one
+#check FiniteDefects.d4_core_one_u_gt_two
+#check FiniteDefects.d4_core_two_v_gt_zero
+
+-- paper-label: d4:prop:bijection
 #check FiniteDefects.d4LiteralTilingEquivSigmaArmTriple_kernelOnly
-#check FiniteDefects.d4LiteralTilingCountKernelOnly
-#check FiniteDefects.d4SpecializedTilingCount_eq_literal
+
+-- paper-label: d4:eq:R
+#check FiniteDefects.d4R
+
+-- paper-label: d4:eq:R-coeff
+#check FiniteDefects.d4R_coefficient_formula
+
+-- paper-label: d4:thm:d4-sum
 #check FiniteDefects.d4LiteralTilingCount_ballot_formula_kernelOnly
+
+-- paper-label: d4:eq:A
+#check FiniteDefects.d4A
+
+-- paper-label: d4:eq:C
+#check FiniteDefects.d4C
+
+-- paper-label: d4:eq:H
+#check FiniteDefects.d4H
+
+-- paper-label: d4:eq:ballot-sum
+#check FiniteDefects.d4LiteralTilingCount_ballot_formula_kernelOnly
+
+-- paper-label: d4:eq:phi
+#check FiniteDefects.goodPhi
+
+-- paper-label: d4:eq:determinant
+#check FiniteDefects.goodDeterminant
+
+-- paper-label: d4:eq:good-expansion
+#check FiniteDefects.goodExpansion_functional
+
+-- paper-label: d4:eq:q
+#check FiniteDefects.goodQ
+#check FiniteDefects.goodDiagonal_goodW
+
+-- paper-label: d4:eq:diag-delta
+#check FiniteDefects.goodDiagonal_goodDeterminant
+
+-- paper-label: d4:eq:A-good
+#check FiniteDefects.d4A0_Good_equation
+
+-- paper-label: d4:eq:C-good
+#check FiniteDefects.d4C_Good_equation
+
+-- paper-label: d4:eq:H-good
+#check FiniteDefects.d4H_Good_equation
+
+-- paper-label: d4:eq:three-components
 #check FiniteDefects.d4Good_A0_component_kernelOnly
 #check FiniteDefects.d4Good_C_component_kernelOnly
 #check FiniteDefects.d4Good_H_component_kernelOnly
-#check FiniteDefects.d4GoodKernelDelta_eq
-#check FiniteDefects.goodExpansion_functional
-#check FiniteDefects.goodDiagonal_mul
-#check FiniteDefects.goodDiagonal_goodExpansion
-#check FiniteDefects.fpsCompose_assoc
-#check FiniteDefects.d4LiteralTilingSeriesKernelOnly
-#check FiniteDefects.d4TilingSeriesKernelOnly_eq_literal
-#check FiniteDefects.d4Good_generating_function_literal_kernelOnly
-#check FiniteDefects.d4GeneratingFunctionKernelOnly
-#check FiniteDefects.GeneralBoneCountStatement
-#check FiniteDefects.cz_bone_count_kernelOnly
-#check FiniteDefects.cmo_bone_count_kernelOnly
-#check FiniteDefects.generalBoneCountKernelOnly
-#check FiniteDefects.d3k_exact_energy_count_identity
-#check FiniteDefects.d3k1_exact_energy_count_identity
-#check FiniteDefects.GeneralFiniteDefectStatement
-#check FiniteDefects.generalFiniteDefectKernelOnly
 
 namespace FiniteDefects
 

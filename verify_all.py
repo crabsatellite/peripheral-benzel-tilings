@@ -13,6 +13,8 @@ ROOT = Path(__file__).resolve().parent
 LEAN_ROOT = ROOT / "lean4"
 ALLOWED_AXIOMS = {"propext", "Classical.choice", "Quot.sound"}
 LABEL = re.compile(r"\\label\{([^}]+)\}")
+PAPER_MAP_LABEL = re.compile(r"^\s*--\s*paper-label:\s*(d4:[^\s]+)\s*$")
+PAPER_MAP_CHECK = re.compile(r"^\s*#check\s+(FiniteDefects\.[A-Za-z0-9_\.]+)\s*$")
 FORBIDDEN_SOURCE = re.compile(
     r"(?m)^\s*(?:axiom|opaque)\b|"
     r"\b(?:sorry|admit|native_decide|Lean\.trustCompiler|implemented_by|"
@@ -154,9 +156,39 @@ def manuscript_labels() -> tuple[int, int]:
     return len(problem6), len(d4)
 
 
-def audit_d4_axioms(output: str) -> set[str]:
-    observed = set(re.findall(r"'([^']+)' depends on axioms", output))
-    missing = sorted(REQUIRED_D4_AUDIT - observed)
+def d4_paper_map() -> tuple[list[str], set[str]]:
+    path = LEAN_ROOT / "D4KernelOnly" / "D4KernelTheoremMap.lean"
+    mapping: dict[str, list[str]] = {}
+    order: list[str] = []
+    current: str | None = None
+    for line_number, line in enumerate(path.read_text(encoding="utf-8").splitlines(), 1):
+        label_match = PAPER_MAP_LABEL.match(line)
+        if label_match:
+            current = label_match.group(1)
+            if current in mapping:
+                fail(f"duplicate d4 map label {current} at line {line_number}")
+            mapping[current] = []
+            order.append(current)
+            continue
+        check_match = PAPER_MAP_CHECK.match(line)
+        if check_match and current is not None:
+            mapping[current].append(check_match.group(1))
+    expected = [f"d4:{label}" for label in EXPECTED_D4_LABELS]
+    if order != expected:
+        fail("d4 paper-to-Lean map label order or identity drifted")
+    empty = [label for label, endpoints in mapping.items() if not endpoints]
+    if empty:
+        fail(f"unmapped d4 manuscript labels: {empty}")
+    return order, {endpoint for endpoints in mapping.values() for endpoint in endpoints}
+
+
+def audit_d4_axioms(
+    output: str, required: set[str] = REQUIRED_D4_AUDIT
+) -> set[str]:
+    observed = set(re.findall(
+        r"'([^']+)' (?:depends on axioms|does not depend on any axioms)", output
+    ))
+    missing = sorted(required - observed)
     if missing:
         fail(f"missing d4 axiom-audit endpoints: {missing}")
     axioms: set[str] = set()
@@ -170,6 +202,7 @@ def audit_d4_axioms(output: str) -> set[str]:
 
 def main() -> int:
     problem6_labels, d4_labels = manuscript_labels()
+    mapped_labels, mapped_endpoints = d4_paper_map()
     sources = source_policy()
     problem6_receipt = run([sys.executable, "verify_formula_map.py"])
     if "formula_map_kernel_audit=passed" not in problem6_receipt:
@@ -183,9 +216,19 @@ def main() -> int:
         cwd=LEAN_ROOT,
     )
     axioms = audit_d4_axioms(d4_audit)
+    map_audit = run(
+        [
+            "lake", "env", "lean", "--trust=0", "-M", "16384", "-q",
+            "D4KernelOnly/D4ManuscriptAxiomAudit.lean",
+        ],
+        cwd=LEAN_ROOT,
+    )
+    axioms.update(audit_d4_axioms(map_audit, mapped_endpoints))
     print(
         "combined_kernel_audit=passed "
         f"problem6_labels={problem6_labels} d4_labels={d4_labels} "
+        f"d4_mapped_labels={len(mapped_labels)} "
+        f"d4_mapped_endpoints={len(mapped_endpoints)} "
         f"lean_sources={sources} trust=0 axioms={','.join(sorted(axioms))}"
     )
     return 0

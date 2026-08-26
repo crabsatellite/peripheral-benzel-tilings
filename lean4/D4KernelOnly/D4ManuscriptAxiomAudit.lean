@@ -1,0 +1,50 @@
+import D4KernelOnly.D4KernelTheoremMap
+
+/-! # Axiom receipts for every endpoint named by the d=4 manuscript map -/
+
+#print axioms FiniteDefects.d4GeneratingFunctionKernelOnly
+#print axioms FiniteDefects.d4Good_generating_function_literal_kernelOnly
+#print axioms FiniteDefects.inBenzel
+#print axioms FiniteDefects.ownerQ
+#print axioms FiniteDefects.ownerR
+#print axioms FiniteDefects.owner_cell_zero_differences
+#print axioms FiniteDefects.owner_cell_one_differences
+#print axioms FiniteDefects.owner_cell_two_differences
+#print axioms FiniteDefects.ownerDomainHierarchyKernel
+#print axioms FiniteDefects.ownerPotential
+#print axioms FiniteDefects.stone_energy_by_residue
+#print axioms FiniteDefects.boneA_energy_by_residue
+#print axioms FiniteDefects.boneB_energy_by_residue
+#print axioms FiniteDefects.boneC_energy_by_residue
+#print axioms FiniteDefects.generalFiniteDefectKernelOnly
+#print axioms FiniteDefects.d3k_exact_energy_count_identity
+#print axioms FiniteDefects.d3k1_exact_energy_count_identity
+#print axioms FiniteDefects.generalBoneCountKernelOnly
+#print axioms FiniteDefects.D4DefectParameter.core
+#print axioms FiniteDefects.d4LiteralTilingEquivPathData_kernelOnly
+#print axioms FiniteDefects.d4TerminalSupportGraph_isTree
+#print axioms FiniteDefects.d4AbstractEdge_zero_mono
+#print axioms FiniteDefects.d4AbstractEdge_one_mono
+#print axioms FiniteDefects.d4AbstractEdge_two_mono
+#print axioms FiniteDefects.d4_core_zero_w_gt_one
+#print axioms FiniteDefects.d4_core_one_u_gt_two
+#print axioms FiniteDefects.d4_core_two_v_gt_zero
+#print axioms FiniteDefects.d4LiteralTilingEquivSigmaArmTriple_kernelOnly
+#print axioms FiniteDefects.d4R
+#print axioms FiniteDefects.d4R_coefficient_formula
+#print axioms FiniteDefects.d4LiteralTilingCount_ballot_formula_kernelOnly
+#print axioms FiniteDefects.d4A
+#print axioms FiniteDefects.d4C
+#print axioms FiniteDefects.d4H
+#print axioms FiniteDefects.goodPhi
+#print axioms FiniteDefects.goodDeterminant
+#print axioms FiniteDefects.goodExpansion_functional
+#print axioms FiniteDefects.goodQ
+#print axioms FiniteDefects.goodDiagonal_goodW
+#print axioms FiniteDefects.goodDiagonal_goodDeterminant
+#print axioms FiniteDefects.d4A0_Good_equation
+#print axioms FiniteDefects.d4C_Good_equation
+#print axioms FiniteDefects.d4H_Good_equation
+#print axioms FiniteDefects.d4Good_A0_component_kernelOnly
+#print axioms FiniteDefects.d4Good_C_component_kernelOnly
+#print axioms FiniteDefects.d4Good_H_component_kernelOnly

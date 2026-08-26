@@ -49,9 +49,6 @@ Propp's Problem 6 and the First Defect Diagonal}
 \address{Independent Researcher, Tokyo, Japan; ORCID 0009-0008-4516-8946}
 \email{cl7076@nyu.edu}
 \date{August 2026}
-\dedicatory{\normalfont\small\textbf{Formalization status.}
-Both enumerative chains and the general finite-defect theorem have kernel-only
-Lean~4 formalizations over Mathlib.}
 
 \subjclass[2020]{Primary 05A15, 05B45; Secondary 05A10}
 \keywords{benzel tilings, trihexes, lattice paths, ballot paths,
@@ -689,15 +686,22 @@ directed-path program verifies the fixed-sink chirality products and the total
 formula through $n=12$.  These computations are finite consistency checks and
 are not used in the proof of Theorem~\ref{thm:main}.
 
-The Problem 6 kernel-only Lean~4 formalization defines the literal benzel and
-prototiles, proves the tiling/path equivalence, and verifies the generating
-function and closed form.  Its exact 19-label map compiles with
-\texttt{--trust=0}.  The separate $d=4$ development proves the general
-finite-defect theorem, identifies its $d=4$ literal carrier definitionally,
-and kernel checks the one-defect bijection, ballot sum, and Lagrange--Good
-evaluation.  The final audits in both tracks report only the standard Lean
-axioms \texttt{propext}, \texttt{Classical.choice}, and \texttt{Quot.sound}.
-Finite computations remain consistency checks rather than formal premises.
+An accompanying Lean~4 development formalizes both enumerative arguments and
+the general finite-defect theorem directly over the literal benzel and
+exact-cover definitions.  It includes the tiling/path equivalences, the
+one-defect classification, the ballot sums, and both generating-function
+evaluations.  The checked public endpoints use no project-specific axioms or
+computational proof shortcuts; their reported logical dependencies are only
+the standard Lean/Mathlib principles \texttt{propext},
+\texttt{Classical.choice}, and \texttt{Quot.sound}.  The finite computations
+remain consistency checks rather than premises of the proofs.
+
+\paragraph{Preprint history.}
+Earlier versions under concept DOI
+\href{https://doi.org/10.5281/zenodo.22057378}
+{\nolinkurl{10.5281/zenodo.22057378}} contained only the solution of
+Propp's Problem~6.  The present article subsumes that version and adds the
+finite-defect hierarchy and the complete first-defect diagonal.
 
 \paragraph{Data and code availability.}
 The released Problem 6 formalization and reproducibility files are available in the
@@ -710,11 +714,14 @@ releases of the same repository.
 \section*{Declaration of generative AI and AI-assisted technologies in the
 manuscript preparation process}
 
-During the preparation of this work, the author used OpenAI Codex and an
-author-developed local research system to assist with proof exploration,
-programming, formalization, and language editing.  The author reviewed the
-resulting mathematical statements, computations, citations, and prose and
-takes full responsibility for the content of the manuscript.
+During the preparation of this work, the author used an author-developed local
+implementation of the Proof Engine framework for AI-assisted mathematical
+research.  The implementation operates through replaceable AI-agent and
+harness components; the present work used OpenAI Codex within that
+implementation.  The framework is described in \emph{Proof Engine
+Infrastructure}~\cite{LiProofEngine2026}.  The author reviewed and edited the
+resulting material and assumes full responsibility for the definitions,
+statements, proofs, citations, code, and exposition.
 
 \section*{Statements and declarations}
 

@@ -1,10 +1,29 @@
 import FiniteDefects.D4CountingFintypes
+import Mathlib.Algebra.Polynomial.Coeff
 
 /-! # The three ballot sums attached to the five defect classes -/
 
 namespace FiniteDefects
 
 def d4R (x y : ℕ) : ℕ := ballotNumber (x + 2 * y) y
+
+/-! The coefficient form used in the manuscript, over the literal integer
+polynomial carrier so that the subtraction in `(1 - X)` is genuine. -/
+
+theorem d4R_coefficient_formula (x y : ℕ) :
+    ((d4R x y : ℕ) : ℤ) =
+      ((1 - Polynomial.X) * (1 + Polynomial.X) ^ (x + 2 * y) :
+        Polynomial ℤ).coeff y := by
+  rcases y with _ | y
+  · simp [d4R, ballotNumber, Polynomial.coeff_one_add_X_pow]
+  · have hhalf : y < (x + 2 * (y + 1)) / 2 := by omega
+    have hchoose :
+        (x + 2 * (y + 1)).choose y ≤
+          (x + 2 * (y + 1)).choose (y + 1) :=
+      Nat.choose_le_succ_of_lt_half_left hhalf
+    simp only [d4R, ballotNumber]
+    rw [Nat.cast_sub hchoose]
+    simp [sub_mul, Polynomial.coeff_one_add_X_pow]
 
 def d4AWeight {n : ℕ} (p : SimplexPoint n) : ℕ :=
   d4R p.u p.v * d4R p.v p.w * d4R p.w p.u
