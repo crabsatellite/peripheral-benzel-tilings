@@ -1,16 +1,21 @@
 # Finite-Defect Path Models for Peripheral Benzel Tilings
 
 This repository contains the combined manuscript and the complete kernel-only
-Lean 4 formalization of Propp's Problem 6 and the first defect diagonal for
-type-103 peripheral benzel tilings.
+Lean 4 formalization of two linked results for type-103 peripheral benzel
+tilings: Propp's Problem 6 on the rigid diagonal `d=3`, and the finite-defect
+hierarchy culminating in the complete first-defect diagonal `d=4`.
 
 ## Main results
+
+### Propp's Problem 6: the rigid diagonal `d=3`
 
 For every integer `n >= 5`,
 
 ```text
 T_103(n, 2n-3) = (3n+3)(3n-7)! / ((n-5)!(2n-1)!).
 ```
+
+### Finite defects and the first-defect diagonal `d=4`
 
 For the finite-defect hierarchy, put `d = 2a-b`, `t = a-2`, and assume
 `k >= 1` and `2k <= t+1`.  Every literal type-103 tiling satisfies
@@ -22,7 +27,9 @@ d = 3k + 1 => wrong-phase stones + three-owner bones = binom(k+1,2).
 
 Thus `d=4` is the first one-defect diagonal.  Deleting its unique defect gives
 three independent labelled ballot paths, leading to the algebraic generating
-function proved in the manuscript.
+function for every `T_103(a, 2a-4)` proved in the manuscript.  This is a full
+enumeration of the first-defect diagonal, not merely a structural corollary of
+the Problem 6 formula.
 
 ## Formal verification
 
