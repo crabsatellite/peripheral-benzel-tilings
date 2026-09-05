@@ -397,8 +397,11 @@ $K=1$ and $P=0$.
 Following outgoing edges from the three corners now gives the required three
 paths.  They cannot meet before the unique sink: a pass-through owner has only
 one incoming edge, and the sink already has its three incoming labels.  Their
-common endpoint is a full owner and therefore has three positive simplex
-coordinates.  Any further component would have no sink and hence, by
+common endpoint has three incoming edges with distinct predecessor owners,
+so their last directions are distinct.  The permitted directions therefore
+use $A,B,C$ once each.  Nonnegativity of the predecessor coordinates for
+the incoming $C,B,A$ edges forces, respectively, $u,v,w>0$ at the sink.
+Any further component would have no sink and hence, by
 finiteness, would contain a directed cycle.
 
 Conversely, replace every permitted labelled step by the unique bone from
